@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/logo";
 
 const headingFont = localFont({
     src: "../../public/fonts/font.woff2"
