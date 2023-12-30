@@ -11,3 +11,5 @@ const PlatformLayout = ({
         </ClerkProvider>
     )
 }
+
+export default PlatformLayout;
