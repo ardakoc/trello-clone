@@ -12,10 +12,10 @@ export const Navbar = () => {
                 <div className="hidden md:flex">
                     <Logo />
                 </div>
-                <Button size="sm" className="rounded-sm hidden md:block h-auto py-1.5 px-2 bg-blue-600 hover:bg-blue-900">
+                <Button size="sm" variant="primary" className="rounded-sm hidden md:block h-auto py-1.5 px-2">
                     Create
                 </Button>
-                <Button size="sm" className="rounded-sm block md:hidden bg-blue-600 hover:bg-blue-900">
+                <Button size="sm" variant="primary" className="rounded-sm block md:hidden">
                     <Plus className="h-4 w-4" />
                 </Button>
             </div>

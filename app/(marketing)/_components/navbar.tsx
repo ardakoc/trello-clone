@@ -14,7 +14,7 @@ export const Navbar = () => {
                             Login
                         </Link>
                     </Button>
-                    <Button size="sm" className="bg-blue-600 hover:bg-blue-900" asChild>
+                    <Button size="sm" variant="primary" asChild>
                         <Link href="/sign-up">
                             Get Taskello for free
                         </Link>
