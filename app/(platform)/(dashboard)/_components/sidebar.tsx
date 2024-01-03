@@ -6,8 +6,11 @@ import { useLocalStorage } from "usehooks-ts";
 import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Accordion } from "@/components/ui/accordion";
+
+import { NavItem, Organization } from "./nav-item";
 
 interface SidebarProps {
     storageKey?: string // to use in accordion component
@@ -94,9 +97,13 @@ export const Sidebar = ({
                 className="space-y-2"
             >
                 {userMemberships.data.map(({ organization }) => (
-                    <p key={organization.id}>
-                        {organization.id}
-                    </p>
+                    <NavItem 
+                        key={organization.id}
+                        isActive={activeOrganization?.id === organization.id}
+                        isExpanded={expanded[organization.id]}
+                        organization={organization as Organization}
+                        onExpand={onExpand}
+                    />
                 ))}
             </Accordion>
         </>
