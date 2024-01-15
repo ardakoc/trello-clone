@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Loader2 } from "lucide-react"
 import { useFormStatus } from "react-dom"
 import { useEffect, useState } from "react"
@@ -78,6 +79,13 @@ export const FormPicker = ({
                             className="object-cover rounded-sm"
                             fill
                         />
+                        <Link
+                            href={image.links.html}
+                            target="_blank"
+                            className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate text-white hover:underline p-1 bg-black/50"
+                        >
+                            {image.user.name}
+                        </Link>
                     </div>
                 ))}
             </div>
