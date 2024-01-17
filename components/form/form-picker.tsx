@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Loader2 } from "lucide-react"
+import { Check, Loader2 } from "lucide-react"
 import { useFormStatus } from "react-dom"
 import { useEffect, useState } from "react"
 
@@ -79,6 +79,11 @@ export const FormPicker = ({
                             className="object-cover rounded-sm"
                             fill
                         />
+                        {selectedImageId === image.id && (
+                            <div className="absolute inset-y-0 h-full w-full bg-black/30 flex items-center justify-center">
+                                <Check className="h-4 w-4 text-white" />
+                            </div>
+                        )}
                         <Link
                             href={image.links.html}
                             target="_blank"
