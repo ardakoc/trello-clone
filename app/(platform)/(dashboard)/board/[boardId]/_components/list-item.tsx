@@ -1,10 +1,13 @@
 "use client"
 
 import { ElementRef, useRef, useState } from "react"
+
 import { ListWithCards } from "@/types"
+import { cn } from "@/lib/utils"
 
 import { ListHeader } from "./list-header"
 import { CardForm } from "./card-form"
+import { CardItem } from "./card-item"
 
 interface ListItemProps {
     data: ListWithCards
@@ -37,6 +40,20 @@ export const ListItem = ({
                     onAddCard={enableEditing}
                     data={data}
                 />
+                <ol
+                    className={cn(
+                        "mx-1 px-1 py-0.5 flex flex-col gap-y-2",
+                        data.cards.length > 0 ? "mt-2" : "mt-0"
+                    )}
+                >
+                    {data.cards.map((card, index) => (
+                        <CardItem
+                            index={index}
+                            key={card.id}
+                            data={card}
+                        />
+                    ))}
+                </ol>
                 <CardForm
                     listId={data.id}
                     ref={textareaRef}
