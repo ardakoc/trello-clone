@@ -2,10 +2,13 @@
 
 import { ElementRef, useRef, useState } from "react"
 import { AlignLeft } from "lucide-react"
+import { toast } from "sonner"
 import { useParams } from "next/navigation"
 import { useEventListener, useOnClickOutside } from "usehooks-ts"
 import { useQueryClient } from "@tanstack/react-query"
 
+import { useAction } from "@/hooks/use-action"
+import { updateCard } from "@/actions/update-card"
 import { CardWithList } from "@/types"
 import { Skeleton } from "@/components/ui/skeleton"
 import { FormTextarea } from "@/components/form/form-textarea"
@@ -48,11 +51,29 @@ export const Description = ({
     useEventListener("keydown", onKeyDown)
     useOnClickOutside(formRef, disableEditing)
 
+    const { execute, fieldErrors } = useAction(updateCard, {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({
+                queryKey: ["card", data.id]
+            })
+
+            toast.success(`Card "${data.title}" updated`)
+            disableEditing()
+        },
+        onError: (error) => {
+            toast.error(error)
+        }
+    })
+
     const onSubmit = (formData: FormData) => {
         const description = formData.get("description") as string
         const boardId = params.boardId as string
 
-        // TODO: execute
+        execute({
+            id: data.id,
+            description,
+            boardId
+        })
     }
 
     return (
@@ -64,14 +85,17 @@ export const Description = ({
                 </p>
                 {isEditing ? (
                     <form
+                        action={onSubmit}
                         ref={formRef}
                         className="space-y-2"
                     >
                         <FormTextarea
                             id="description"
-                            className="w-full mt-2"
+                            ref={textareaRef}
                             placeholder="Add a more detailed description"
                             defaultValue={data.description || undefined}
+                            errors={fieldErrors}
+                            className="w-full mt-2"
                         />
                         <div className="flex items-center gap-x-2">
                             <FormSubmit>
