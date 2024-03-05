@@ -1,9 +1,10 @@
 "use client"
 
+import Image from "next/image"
+
 import { useProModal } from "@/hooks/use-pro-modal"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 
 export const ProModal = () => {
     const proModal = useProModal()
