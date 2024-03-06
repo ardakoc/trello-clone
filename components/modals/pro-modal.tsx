@@ -1,13 +1,29 @@
 "use client"
 
 import Image from "next/image"
+import { toast } from "sonner"
 
 import { useProModal } from "@/hooks/use-pro-modal"
+import { useAction } from "@/hooks/use-action"
+import { stripeRedirect } from "@/actions/stripe-redirect"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
 export const ProModal = () => {
     const proModal = useProModal()
+
+    const { execute, isLoading } = useAction(stripeRedirect, {
+        onSuccess: (data) => {
+            window.location.href = data
+        },
+        onError: (error) => {
+            toast.error(error)
+        }
+    })
+
+    const onClick = () => {
+        execute({})
+    }
 
     return (
         <Dialog
@@ -39,6 +55,8 @@ export const ProModal = () => {
                         </ul>
                     </div>
                     <Button
+                        disabled={isLoading}
+                        onClick={onClick}
                         variant="primary"
                         className="w-full"
                     >
