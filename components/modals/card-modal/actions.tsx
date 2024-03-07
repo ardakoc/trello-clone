@@ -94,7 +94,7 @@ export const Actions = ({
     )
 }
 
-Actions.Skeleton = function () {
+Actions.Skeleton = function ActionsSkeleton () {
     return (
         <div className="space-y-2 mt-2">
             <Skeleton className="h-4 w-20 bg-neutral-200" />
@@ -103,5 +103,3 @@ Actions.Skeleton = function () {
         </div>
     )
 }
-
-Actions.displayName = "Actions"
