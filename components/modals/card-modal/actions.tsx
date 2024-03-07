@@ -103,3 +103,5 @@ Actions.Skeleton = function () {
         </div>
     )
 }
+
+Actions.displayName = "Actions"
